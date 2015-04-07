@@ -1,0 +1,167 @@
+{% block content %}
+
+    $("#save_btn").click(function(){
+        var currentTabTitle = $('div[id="mytabs"] ul li.active > a').attr("href");
+        var div_name = String(currentTabTitle);
+
+        var inputTypes = [];
+        $(div_name+' input[name][id][value]').each(function(){
+             inputTypes.push($(this).attr('name'));
+        });
+
+    });
+
+    // customer name typeahead
+    $('#customer_name.typeahead').typeahead({
+        name: 'customer_name',
+        prefetch: '{{ site_url() }}/ajax_master_data/getrecord_customer_typehead',
+        limit: 100
+    });
+
+    $(".datepicker").datepicker({
+        defaultDate: +7,
+        showOtherMonths: true,
+        autoSize: true,
+        dateFormat: "dd-mm-yy"
+    });
+
+    var selected = [];
+        var table = $('#table_window_currency').dataTable( {    
+            "searching": true,
+            "ordering": false,    
+            "bLengthChange" : false,
+            "ajax": '{{ site_url() }}/ajax_master_data/get_currency',
+            "columns": [
+                    { "data": "nomor" },
+                    { "data": "currency" },
+                    { "data": "symbol" },
+                    //{ "data": "currency_name" },
+                    { "data": "currency_country" },
+                    { "mRender" : function ( data, type, full ) {
+                        FullData = full;
+                        return ' Select ';
+                      }
+                    },
+                ], 
+                "rowCallback": function( row, data ) {
+                    if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                        $(row).addClass('selected');
+                    }
+                }   
+    });
+        
+    //populate supplier ticketing
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/ajax_master_data/getsupplier_ticketing", 
+        data:'',
+        dataType: 'json',               
+        success: function(data){ 
+            $("#supplier_ticketing_name").append('<option value="" default selected>Supplier Name</option>');
+            var arrayLength = data.length;
+            for(i = 0; i < arrayLength; i++) 
+                $("#supplier_ticketing_name").append("<option value='"+data[i]['supplier_id']+"'>"+data[i]['supplier_name']+"</option>");
+        } 
+
+    });
+
+    //populate supplier hotel
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/ajax_master_data/getsupplier_hotel", 
+        data:'',
+        dataType: 'json',               
+        success: function(data){ 
+            $("#supplier_hotel_name").append('<option value="" default selected>Supplier Name</option>');
+            var arrayLength = data.length;
+            for(i = 0; i < arrayLength; i++) 
+                $("#supplier_hotel_name").append("<option value='"+data[i]['supplier_id']+"'>"+data[i]['supplier_name']+"</option>");
+        } 
+
+    });
+
+    //populate currency
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/ajax_master_data/get_currency_combobox", 
+        data:'',                        
+        dataType: 'json',               
+        success: function(data){ 
+            $("#currency").append('<option value="" default selected>Currency</option>');
+            $("#payment_currency").append('<option value="" default selected>Currency</option>');
+            $("#convert_currency").append('<option value="" default selected>Currency</option>');
+            var array1 = data.length;
+            var array2 = data.length;
+            var array3 = data.length;
+            for(i = 0; i < array1; i++) 
+                $("#currency").append("<option value='"+data[i]['currency']+"'>"+data[i]['currency_label']+"</option>");
+            for(i = 0; i < array2; i++)
+                $("#payment_currency").append("<option value='"+data[i]['currency']+"'>"+data[i]['currency_label']+"</option>");
+            for(i = 0; i < array3; i++)
+                $("#convert_currency").append("<option value='"+data[i]['currency']+"'>"+data[i]['currency_label']+"</option>");
+        } 
+
+    });
+
+
+    //populate country
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/ajax_master_data/get_country", 
+        data:'',                        
+        dataType: 'json',               
+        success: function(data){ 
+            $("#country_code").append('<option value="" default selected>Country</option>');
+            var arrayLength = data.length;
+            for(i = 0; i < arrayLength; i++) 
+                $("#country_code").append("<option value='"+data[i]['country_id']+"'>"+data[i]['country_name']+"</option>");
+        } 
+
+    });
+
+    //populate state
+    $("#country_code").on("change", function(){
+        var id = $("#country_code").val();
+        $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "{{ site_url() }}/ajax_master_data/get_state/"+id,
+                data: '',
+                dataType: "json",
+                success: function (data) {
+                    $('select#state option').remove();
+                    $("#state").append('<option selected>State</option>');
+                    var arrayLength = data.length;
+                    for(i = 0; i < arrayLength; i++) 
+                    $("#state").append("<option value='"+data[i]['state_id']+"'>"+data[i]['state_name']+"</option>");
+                    
+                }
+        });        
+    })
+
+    //populate city
+    $("#state").on("change", function(){
+        var id = $("#state").val();
+        $.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "{{ site_url() }}/ajax_master_data/get_city/"+id,
+                data: '',
+                dataType: "json",
+                success: function (data) {
+                    $('select#city option').remove();
+                    $("#city").append('<option selected>City</option>');
+                    var arrayLength = data.length;
+                    for(i = 0; i < arrayLength; i++) 
+                    $("#city").append("<option value='"+data[i]['city_id']+"'>"+data[i]['city_name']+"</option>");
+                    
+                }
+        });        
+    })
+
+       
+    $('body').on('show.bs.modal', '#window-currency',function (e) {
+
+    });
+    
+{% endblock %}

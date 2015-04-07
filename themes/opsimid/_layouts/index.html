@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css"  href="{{ base_url() }}assets/cloud-admin/css/themes/nature.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="{{ base_url() }}assets/cloud-admin/css/responsive.css" >
+	
+	<link href="{{ base_url() }}assets/cloud-admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/DataTables/media/css/jquery.dataTables.css" />
+	<!-- DATA TABLES 
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/datatables/media/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/datatables/media/assets/css/datatables.min.css" />
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/datatables/extras/TableTools/media/css/TableTools.min.css" />-->
+        
+        
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+	<!-- TYPEAHEAD -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/typeahead/typeahead.css" />
+	<!-- FILE UPLOAD -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+	<!-- SELECT2 -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/select2/select2.min.css" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="{{ base_url() }}assets/cloud-admin/js/uniform/css/uniform.default.min.css" />
+	<!-- JQUERY UPLOAD -->
+	<!-- blueimp Gallery styles -->
+	<link rel="stylesheet" href="{{ base_url() }}assets/cloud-admin/js/blueimp/gallery/blueimp-gallery.min.css">
+	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	<link rel="stylesheet" href="{{ base_url() }}assets/cloud-admin/js/jquery-upload/css/jquery.fileupload.css">
+	<link rel="stylesheet" href="{{ base_url() }}assets/cloud-admin/js/jquery-upload/css/jquery.fileupload-ui.css">
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <!-- /#wrapper -->
+    <!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery/jquery-2.0.3.min.js"></script>
+	<script src="{{ base_url() }}assets/jquery/jquery-1.11.0.js"></script>
+	<!-- JQUERY UI-->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="{{ base_url() }}assets/cloud-admin/bootstrap-dist/js/bootstrap.min.js"></script>
+
+	<!-- BOOTBOX -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/bootbox/bootbox.min.js"></script>
+		
+	<!-- DATE RANGE PICKER -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/bootstrap-daterangepicker/moment.min.js"></script>
+        <script src="{{ base_url() }}assets/cloud-admin/js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+	<!-- SLIMSCROLL -->
+	<script type="text/javascript" src="{{ base_url('assets/cloud-admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js') }}"></script>
+        <script type="text/javascript" src="{{ base_url('assets/cloud-admin/js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js') }}"></script>
+	<!-- BLOCK UI -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+
+	<script type="text/javascript" src="{{ base_url() }}assets/DataTables/media/js/jquery.dataTables.js"></script>
+	
+	<!-- TYPEHEAD -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/typeahead/typeahead.min.js"></script>
+	<!--script type="text/javascript" src="{{ base_url() }}assets/typeahead/typeahead.js"></script-->
+	<!-- AUTOSIZE -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/autosize/jquery.autosize.min.js"></script>
+	<!-- COUNTABLE -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/countable/jquery.simplyCountable.min.js"></script>
+	<!-- INPUT MASK -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+	<!-- SELECT2 -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/select2/select2.min.js"></script>
+	<!-- UNIFORM -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/uniform/jquery.uniform.min.js"></script>
+
+	<!-- FILE UPLOAD -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+	
+	<!-- COOKIE -->
+	<script type="text/javascript" src="{{ base_url() }}assets/cloud-admin/js/jQuery-Cookie/jquery.cookie.min.js"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script type="text/javascript" src="{{ base_url() }}assets/maskMoney/jquery.maskMoney.js"></script>
+
+		<!-- The basic File Upload plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload.min.js"></script>
+	<!-- The File Upload processing plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-process.min.js"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-image.min.js"></script>
+	<!-- The File Upload audio preview plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-audio.min.js"></script>
+	<!-- The File Upload video preview plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-video.min.js"></script>
+	<!-- The File Upload validation plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-validate.min.js"></script>
+	<!-- The File Upload user interface plugin -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/jquery.fileupload-ui.min.js"></script>
+	<!-- The main application script -->
+	<script src="{{ base_url() }}assets/cloud-admin/js/jquery-upload/js/main.js"></script>
+        
+        <script src="{{ base_url() }}assets/cloud-admin/js/script.js"></script>
+        
+	<script>
+		jQuery(document).ready(function() {
+			App.init(); //Initialise plugins and elements
+                        
+           {{ SCRIPTS }}
+		});
+	</script>
+	<!-- /JAVASCRIPTS -->
+    
+</body>
+
+</html>

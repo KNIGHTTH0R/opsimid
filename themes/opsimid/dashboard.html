@@ -1,0 +1,44 @@
+{% extends _layout %}
+
+{% block content %}
+
+        <!-- HEADER -->
+	<header class="navbar clearfix" id="header">
+            <div class="container">
+				<!-- Navigation -->
+                                {% include 'toggle_header.html' %}
+                                <!-- End Navigation -->
+       
+				<!-- Navigation -->
+                                {% include 'menu_navigasi_top.html' %}
+                                <!-- End Navigation -->				
+				
+		</div>
+            
+                <!-- Navigation -->
+                {% include 'menu_top.html' %}
+                <!-- End Navigation -->
+                
+        </header>    
+
+        <!-- PAGE -->
+        <section id="page">
+                <!-- Navigation -->
+                {% include 'menu.html' %}
+                <!-- End Navigation -->
+                
+                <div id="main-content">
+                    {{ window_page }}
+                    
+                    <div class="container">
+                        <div class="row">
+					<div id="content" class="col-lg-12">
+                    {{ content_page }}
+                                        </div>
+                        </div>    
+                    </div>
+                </div>
+        </section>
+        <!-- PAGE -->
+
+{% endblock %}
