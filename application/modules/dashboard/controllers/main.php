@@ -7,9 +7,10 @@ class Main extends CI_Controller {
         $this->load->model('user_mdl');
     }
     
+
+    
     function index()
     {   
-
         $data = array();
         $this->load->library('menu');
         $menu = $this->menu->set_menu();
@@ -19,7 +20,6 @@ class Main extends CI_Controller {
         $this->twiggy->meta('keywords', 'twiggy, twig, template, layout, codeigniter');
         $this->twiggy->meta('description', 'Twiggy is an implementation of Twig template engine for CI');
 
-        //$this->twiggy->set('BREADCRUMBS_TITLE', 'Dashboard');
         $this->twiggy->set('BREADCRUMBS_MAIN_TITLE', 'Home');
 
         $content = $this->twiggy->template('breadcrumbs')->render();
