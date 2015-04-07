@@ -1,0 +1,48 @@
+{% block content %}
+
+var selected = [];
+var table = $('#table_invoice').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : true,
+        "ajax": '{{ site_url() }}/ticketing/ajax_data/getrecord_invoice',
+        "columns": [
+                { "data": "invoice_number" },
+                { "data": "customer_name" },
+                { "data": "transaction_number" },
+                { "data": "due_date" },
+				{ "data": "flight_type" },
+				{ "data": "total" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_VIEW }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+
+$('#table_invoice').on('click', 'a.view-btn', function (e) {
+    e.preventDefault(); 
+    var editId = $(this).data('view-id');
+    window.location.href='{{ site_url() }}/ticketing/invoice/form/' + editId;
+});
+
+// Delete a record
+$('#table_invoice').on( 'click', 'a.print-btn', function (e) {
+        e.preventDefault();
+        if(confirm("Are you sure to print?")) {
+                var delId = $(this).data('print-id');  
+		window.location='{{ site_url() }}/ticketing/invoice/delete/' + delId;	
+	}
+	else
+		return false;
+        
+} );
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% block content %}
+
+    /*function pad(n, width, z) {
+      z = z || '0';
+      n = n + '';
+      return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
+    //populate max supplier code also increment it
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/supplier/ajax_data/getmax_supplier_hotel_code", 
+        data:'',
+        dataType: 'json',               
+        success: function(data){ 
+            var new_data = data[0]['supplier_code'].substr(2);
+            var last_code = parseFloat(new_data);
+            var new_code = parseInt(last_code) + 1 ;
+            var data = pad(new_code, 6);
+            $("#supplier_code").val("HS" + data);
+            
+        } 
+
+    });*/
+
+
+var selected = [];
+var table = $('#table_supplier_hotel').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : false,
+        "ajax": '{{ site_url() }}/supplier/ajax_data/getrecord_supplier_hotel',
+        "columns": [
+                { "data": "supplier_code" },                
+                { "data": "supplier_name" },
+                { "data": "address" },
+                { "data": "city_name" },
+                { "data": "phone_number" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_CRUD }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+// Edit record
+$('#table_supplier_hotel').on( 'click', 'a.edit-btn', function (e) {
+        e.preventDefault();        
+        var editId = $(this).data('edit-id');
+        window.location.href='{{ site_url() }}/supplier/supplier/form/' + editId;
+} );
+
+
+
+// Delete a record
+$('#table_supplier_hotel').on( 'click', 'a.del-btn', function (e) {
+        e.preventDefault();
+        if(confirm("Are you sure?")) {
+                var delId = $(this).data('delete-id');  
+        window.location='{{ site_url() }}/supplier/supplier/delete/' + delId;   
+    }
+    else
+        return false;
+} );
+
+
+/* ---------------SUPPLIER TICKET ---------------------------------------------- */
+
+var selected = [];
+var table = $('#table_supplier_ticketing').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : false,
+        "ajax": '{{ site_url() }}/supplier/ajax_data/getrecord_supplier_ticketing',
+        "columns": [
+                { "data": "supplier_code" },                
+                { "data": "supplier_name" },
+                { "data": "address" },
+                { "data": "city_name" },
+                { "data": "phone_number" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_CRUD }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+// Edit record
+$('#table_supplier_ticketing').on( 'click', 'a.edit-btn', function (e) {
+        e.preventDefault();        
+        var editId = $(this).data('edit-id');
+        window.location.href='{{ site_url() }}/supplier/supplier/form/' + editId;
+} );
+
+
+
+// Delete a record
+$('#table_supplier_ticketing').on( 'click', 'a.del-btn', function (e) {
+        e.preventDefault();
+        if(confirm("Are you sure?")) {
+                var delId = $(this).data('delete-id');  
+        window.location='{{ site_url() }}/supplier/supplier/delete/' + delId;   
+    }
+    else
+        return false;
+} );
+
+{% endblock %}

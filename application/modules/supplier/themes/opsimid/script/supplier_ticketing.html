@@ -1,0 +1,28 @@
+{% block content %}
+
+    function pad(n, width, z) {
+      z = z || '0';
+      n = n + '';
+      return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
+    //populate max supplier code also increment it
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/supplier/ajax_data/getmax_supplier_ticketing_code", 
+        data:'',
+        dataType: 'json',               
+        success: function(data){ 
+            var new_data = data[0]['supplier_code'].substr(2);
+            var last_code = parseFloat(new_data);
+            var new_code = parseInt(last_code) + 1 ;
+            var data = pad(new_code, 6);
+            $("#supplier_code").val("TC" + data);
+            
+        } 
+
+    });
+
+
+
+{% endblock %}

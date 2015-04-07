@@ -1,0 +1,73 @@
+{% block content %}
+
+    function pad(n, width, z) {
+      z = z || '0';
+      n = n + '';
+      return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
+    //populate max hotel code also increment it
+    $.ajax({           
+        type: "GET",
+        url: "{{ site_url() }}/hotel/ajax_data/getmax_hotel_code", 
+        data:'',
+        dataType: 'json',               
+        success: function(data){ 
+            var new_code = 1;
+            var last_code = parseInt(data[0]['hotel_code']);
+            new_code += last_code;
+            var data = pad(new_code, 6);
+            $("#hotel_code").val(data);
+            
+        } 
+
+    });
+
+var selected = [];
+var table = $('#table_hotel').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : true,
+        "ajax": '{{ site_url() }}/hotel/ajax_data/getrecord_hotel',
+        "columns": [
+                { "data": "hotel_name" },              
+                { "data": "hotel_type" },
+                { "data": "star" },
+                { "data": "address" },                
+                { "data": "telp" },
+                { "data": "email" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_CRUD }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+
+// Edit record
+$('#table_hotel').on( 'click', 'a.edit-btn', function (e) {
+        e.preventDefault();        
+        var editId = $(this).data('edit-id');
+        window.location.href='{{ site_url() }}/hotel/hotel/form/' + editId;
+} );
+
+
+
+// Delete a record
+$('#table_hotel').on( 'click', 'a.del-btn', function (e) {
+        e.preventDefault();
+        if(confirm("Are you sure?")) {
+                var delId = $(this).data('delete-id');  
+        window.location='{{ site_url() }}/hotel/hotel/delete/' + delId;   
+    }
+    else
+        return false;
+} );
+
+{% endblock %}

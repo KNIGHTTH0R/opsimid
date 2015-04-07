@@ -1,0 +1,43 @@
+{% block content %}
+
+var selected = [];
+    var table = $('#table_reservation_ticketing').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : false,
+        "ajax": '{{ site_url() }}/ticketing/ajax_data/getrecord_reservation',
+        "columns": [
+                { "data": "invoice_number" },
+                { "data": "reservation_date" },
+                { "data": "customer_name" },
+                { "data": "supplier_name" },
+                { "data": "airlines" },
+                { "data": "currency" },
+                { "data": "total" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{BUTTON_VIEW }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+$('#add_reservation_ticket').on('click',function(){
+   bootbox.dialog({
+        message: '<dic class="row">'+
+                 '<div class="col-md-3"><a class="btn btn-danger btn-icon input-block-level" href="{{ site_url('ticketing/reservation/method/auto') }}"><i class="fa fa-external-link-square fa-2x"></i><div>Automatic from OPSIGO</div></a></div>'+
+                 '<div class="col-md-3"><a class="btn btn-primary btn-icon input-block-level" href="{{ site_url('ticketing/reservation/method/manual/') }}"><i class="fa fa-windows fa-2x"></i><div>Manual</div></a></div>'+
+                 '<div class="col-md-3"><a class="btn btn-pink btn-icon input-block-level" href="{{ site_url('ticketing/reservation/method/lg') }}"><i class="fa fa-random fa-2x"></i><div>LG ( Letter of Guarentee )</div></a></div>'+
+                  '</div>',
+            title: "Choose Method of  Ticket Reservation"
+    });
+   return false;
+});
+
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% block content %}
+
+    $(".datepicker").datepicker({
+        defaultDate: +7,
+        showOtherMonths: true,
+        autoSize: true,
+        dateFormat: "dd-mm-yy"
+    });
+            
+    // customer_name typeahead
+    $('#customer_name.typeahead').typeahead({                
+        name: 'customer_name',
+        prefetch: '{{ site_url() }}index.php/hotel/ajax_data/customer',
+        limit: 20
+    });
+
+var selected = [];
+var table = $('#table_hotel_rate').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : true,
+        "ajax": '{{ site_url() }}/hotel/ajax_data/getrecord_hotel_rate',
+        "columns": [
+                { "data": "hotel_name" },              
+                { "data": "supplier_name" },
+                { "data": "class_name" },
+                { "data": "room_name" },                
+                { "data": "date_from" },
+                { "data": "date_to" },
+                { "data": "sell_room" },
+                { "data": "sell_breakfast" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_CRUD }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+
+// Edit record
+$('#table_hotel_rate').on( 'click', 'a.edit-btn', function (e) {
+        e.preventDefault();        
+        var editId = $(this).data('edit-id');
+        window.location.href='{{ site_url() }}/hotel/hotel/form/' + editId;
+} );
+
+
+
+// Delete a record
+$('#table_hotel_rate').on( 'click', 'a.del-btn', function (e) {
+        e.preventDefault();
+        if(confirm("Are you sure?")) {
+                var delId = $(this).data('delete-id');  
+        window.location='{{ site_url() }}/hotel/hotel/delete/' + delId;   
+    }
+    else
+        return false;
+} );
+
+{% endblock %}

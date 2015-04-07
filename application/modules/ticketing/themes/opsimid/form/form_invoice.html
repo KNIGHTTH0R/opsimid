@@ -1,0 +1,165 @@
+{% block content %}
+<div class="container-fluid">
+
+	<form action="{{ base_url }}index.php/other/invoice/save" method="post" name="form1">
+	<div class="row">    
+        <div class="col-lg-8">
+            <div class="form-group col-md-12">  
+                <div class="col-md-3">
+                    <label>Invoice Number</label>
+                </div>    
+                <div class="col-md-4">
+                    <input class="form-control" id="invoice_id" name="invoice_number" type="text" value="{{ edit.invoice_number }}" required/>                
+                </div>    
+            </div>
+            <div class="form-group col-md-12">
+                <div class="col-md-3">
+                    <label>Customer</label>
+                </div>    
+                <div class="col-md-4">    
+                    <input class="form-control" id="customer_id" name="customer_name" type="text" value="{{ edit.customer_name }}" required/>                
+                </div>  
+            </div>
+            <div class="form-group col-md-12">
+            	<div class="col-md-3">
+                	<label>Division</label>
+                </div>    
+                <div class="col-md-4">   
+                    <input class="form-control" id="division_name" name="division_name" type="text" value="{{ edit.division_name }}" required/>                
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+            	<div class="col-md-3">
+                    <label>Sub Division</label>
+                </div>
+                <div class="col-md-4">    
+                    <input class="form-control" id="sub_division" name="sub_division" type="text" value="{{ edit.sub_division }}" required/>                
+                </div>
+            </div>		
+            <div class="form-group col-md-12">
+                <div class="col-md-3">
+					<label>Due Date</label>
+                </div>    
+                <div class="col-md-4">    
+                    <div class="input-group date" id="datetimepicker1">
+                                    <input type="text" class="form-control" id="date_from" name="date_from" value="" placeholder="YYYY-MM-DD" required>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                </div>  
+            </div>
+
+            <div class="form-group col-md-12">
+                <div class="col-md-3">
+                    <label>Type</label>
+                </div>
+                <div class="col-md-4">    
+                    <select class="form-control m-b" id="flight_type" name="flight_type" type="set" value="{{ edit.flight_type }}" required/>
+					<option value="0">Choose One</option>
+					<option value="1">Domestic</option>
+					<option value="2">International</option>
+					</select>                
+                </div>   
+            </div>
+            <div class="form-group col-md-12">
+            	<div class="col-md-3">
+                    <label>Currency</label>
+                </div>
+                <div class="col-md-4">    
+                    <input class="form-control" id="currency" name="currency" type="text" value="{{ edit.currency }}" required/>                
+                </div>
+            </div>	
+        </div>    
+    </div>
+    
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="row">  
+             <div class="table-responsive">
+                 <div class="col-lg-12">
+                  <a href="{{ site_url('') }}" class="add-btn btn btn-success">
+                        <i class="fa fa-plus"></i> Add Detail
+                  </a>
+                  <table id="table_pnr" class="table table-bordered table-hover table-striped">
+                       <thead>
+                           <tr>
+                               <th nowrap="nowrap">Title<br>CN Disc</th>
+                               <th nowrap="nowrap">First Name<br>Last Name</th>
+                               <th nowrap="nowrap">Type<br>Id Number</th>
+                               <th nowrap="nowrap">Supplier<br>Ticket No</th>
+                               <th nowrap="nowrap">Discount<br>Keep Comm</th>
+                               <th nowrap="nowrap">Ctg<br>PPN</th>
+                               <th nowrap="nowrap">Ccy<br>IW</th>
+                               <th nowrap="nowrap">Base Fare<br>Commision</th>
+                               <th nowrap="nowrap">Nett Price<br>Add Charge</th>
+                               <th nowrap="nowrap">Sell Price<br>Air Tax</th>
+                               <th nowrap="nowrap">Total Price</th>
+                           </tr>
+                       </thead>               
+                       <tbody>
+                           <tr>
+                               <td>
+                                <select class="form-control col-xs-10">
+                                  <option>1</option>
+                              </select>
+                               </td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td>
+                                <input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}">
+                               </td>
+                               <td>
+                                <input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}">
+                      </td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td>
+                                <input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}">
+                      </td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td>
+                                <select class="form-control col-xs-10">
+                                <option>1</option>
+                              </select>
+                               </td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                           </tr>
+                           <tr>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td>
+                                <select class="form-control col-xs-10">
+                                  <option>1</option>
+                              </select>
+                               </td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                               <td><input type="text" class="form-control" id="code" name="code" value="{{ edit.code}}"></td>
+                           </tr>
+                       </tbody>
+                  </table>
+                 </div>    
+             </div>
+        </div>
+        </div>
+</div>
+  </div>
+    
+	<input type="submit" class="btn btn-default" value="Save" id="btnsave" name="btnsave">
+    <input type="submit" class="btn btn-default" value="Update" id="btnupdate" name="btnupdate">
+	</form> 
+</div>
+
+
+
+
+
+{% endblock %}

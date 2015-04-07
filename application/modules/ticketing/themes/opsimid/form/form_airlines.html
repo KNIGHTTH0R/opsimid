@@ -1,0 +1,99 @@
+{% block content %}
+
+<section class="content right-side">
+<div class="box border green">
+    <div class="box-title">
+      <h4><i class="fa fa-bars"></i>{{ BREADCRUMBS_TITLE }}</h4>
+    </div>
+    <div class="box-body big">
+	<form action="{{ site_url('/ticketing/airlines/save') }}" method="post" name="form1">
+    <div class="row">
+            <input type="hidden" name="airlines_id" id="airlines_id" value="{{ edit.airlines_id }}" />
+        <div class="col-xs-6">
+
+        	<div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Airlines Name</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="airlines_name" name="airlines_name" value="{{ edit.airlines_name}}" required placeholder="Type here. Example: Air Asia, etc.">
+                    </div>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Contact Person</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="contact_person" name="contact_person" value="{{ edit.contact_person}}" required placeholder="Type here. Example: John, etc.">
+                    </div>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Phone</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{ edit.phone}}" required placeholder="Type here. Example: 021-8xx, etc.">
+                    </div>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">E-Mail</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="email" name="email" value="{{ edit.email}}" required placeholder="Type here. Example: John@gmail.com, etc.">
+                    </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Address</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="address" name="address" value="{{ edit.address}}" required placeholder="Type your address">
+                    </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Currency</label>
+                <div class="col-md-6">
+                    <select class="form-control col-xs-10" width="100px" id="currency" name="currency">
+                    </select>
+                    </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Upload Logo</label>
+                <div class="col-md-8">
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                <div class="input-group">
+                                                    <div class="form-control uneditable-input"><i class="fa fa-file fileupload-exists"></i> 
+                                                        <span class="fileupload-preview"></span>
+                                                    </div>
+                                                    <div class="input-group-btn">
+                                                        <a style="height:30px;" class="btn btn-default btn-file">
+                                                            <span class="fileupload-new">Select file</span>
+                                                            <span class="fileupload-exists">Change</span>
+                                                            <input type="file" class="file-input"/></a>
+                                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-label">Description</label>
+                <div class="col-md-6">
+                    <textarea class="form-control"  id="information" name="information" rows="2">{{ edit.information}}</textarea>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+        <div class="row">
+			<input type="submit" class="btn btn-primary" value="Save" />
+			<input type="button" onclick="history.back()" class="btn btn-default" value="Cancel" />
+			    </div>
+      </form>
+
+  </div>
+</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% block content %}
+
+var selected = [];
+var table = $('#table_code_configuration').dataTable( {    
+        "searching": true,
+        "ordering": false,    
+        "bLengthChange" : false,
+        "ajax": '{{ site_url() }}/setting/ajax_data/getrecord_code_configuration',
+        "columns": [
+                { "data": "nomor" },
+                { "data": "code_name" },
+                { "data": "description" },
+                { "mRender" : function ( data, type, full ) {
+                    FullData = full;
+                    return '{{ BUTTON_CRUD }} ';
+                  }
+                },
+            ], 
+            "rowCallback": function( row, data ) {
+                if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+                    $(row).addClass('selected');
+                }
+            }   
+});
+
+
+// Edit record
+$('#table_code_configuration').on( 'click', 'a.edit-btn', function (e) {
+        e.preventDefault();        
+        var editId = $(this).data('edit-id');
+        window.location.href='{{ site_url() }}/setting/code_configuration/form/' + editId;
+} );
+
+    
+$('body').on('show.bs.modal', '.modal',function (e) {
+    
+});
+
+{% endblock %}

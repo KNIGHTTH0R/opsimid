@@ -1,0 +1,33 @@
+{% block content %}
+<div class="content right-side">
+    <form action="{{ site_url() }}/tour/cost/save" method="post" name="form1">
+        <input id="cost_id" name="cost_id" type="hidden" value="{{ edit.cost_id }}" />
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group col-xs-12">
+                    <label for="class_id" class="col-xs-4 control-label">Cost</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" id="cost_name" name="cost_name" value="{{ edit.cost_name }}" placeholder="Cost">
+                    </div> 
+                </div>
+
+                <div class="form-group col-xs-12">
+                    <label for="class_id" class="col-xs-4 control-label">Description</label>
+                    <div class="col-xs-6">
+                        <input type="text" class="form-control" id="description" name="description" value="{{ edit.description }}" placeholder="Description">
+                    </div> 
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <input type="button" onclick="history.back()" class="btn btn-default" value="Back" />
+        </div>
+    </form> 
+</div>
+
+{% endblock %}
